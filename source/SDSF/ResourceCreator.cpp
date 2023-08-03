@@ -2,6 +2,8 @@
 
 #include <SDSF/FileReader.hpp>
 
+#include <nds.h>
+
 void ResourceCreator::LoadTilemap(const std::string& filename, u32 tilesToLoad, u16* gfxPointer) {
     FileReader reader;
 
