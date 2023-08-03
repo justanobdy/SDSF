@@ -2,8 +2,6 @@
 
 #include <SDSF/FileReader.hpp>
 
-#include <iostream>
-
 AnimatedSprite::AnimatedSprite(Engine engine, AnimatedSpriteType type)
     :   Sprite(engine), type(type)
 {
@@ -37,9 +35,7 @@ void AnimatedSprite::LoadImage(const u16* const data, u32 length, u16 frames, Sp
     const u32 sizePerSprite = Texture::CalculateTextureSize(spriteSize, format);
 
     // The expected size of the data, in half words
-    const u32 expectedDataSize = (sizePerSprite * frames) >> 1;
-
-    //std::cout << sizePerSprite >> 1 << std::endl;        
+    const u32 expectedDataSize = (sizePerSprite * frames) >> 1;   
 
     if(length < expectedDataSize) {
         throw Exception("Data given to AnimatedSprite is too short!");

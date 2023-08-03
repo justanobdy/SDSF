@@ -3,12 +3,11 @@
 #include "SDSF/FileReader.hpp"
 
 #include <filesystem>
-#include <iostream>
 
 Texture::Texture(Engine engine)
     :   engine(engine)
 {
-	nocashMessage("init");
+	
 }
 
 u32 Texture::CalculateTextureSize(SpriteSize spriteSize, SpriteColorFormat colorMode)

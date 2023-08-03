@@ -1,7 +1,5 @@
 #pragma once
 
-#include <iostream>
-
 #include <SDSF/fpm/fpm.hpp>
 
 using FloatType = fpm::fixed_16_16;

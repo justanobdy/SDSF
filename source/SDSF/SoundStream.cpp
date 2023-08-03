@@ -1,5 +1,4 @@
 #include <SDSF/SoundStream.hpp>
-#include <iostream>
 #include <SDSF/Exception.hpp>
 #include <cmath>
 
@@ -13,12 +12,6 @@ SoundStream::SoundStream()
 {
     stream.manual = false;
     stream.callback = &streamFunctionForwarder;
-
-    /*if(currentStream == nullptr) {
-        currentStream = this;
-    }else {
-        throw Exception("Only one stream is allowed at a time!");
-    }*/
 }
 
 void SoundStream::Play(const std::string& filename) {

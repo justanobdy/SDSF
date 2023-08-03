@@ -24,7 +24,6 @@
 #include "Vector2.hpp"
 #include "fpm/fpm.hpp"
 #include "Utils.hpp"
-#include <iostream>
 
 /// @brief Separate class which contains code that does not need to be templated
 class BackgroundBase {

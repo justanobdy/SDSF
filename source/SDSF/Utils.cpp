@@ -2,7 +2,7 @@
 
 #include <cmath>
 
-#include <iostream>
+#include <stdio.h>
 
 Vector2<u16> Utils::BgSizeToVectorPixels(BgSize size)
 {
@@ -160,4 +160,8 @@ u8 Utils::ObjSizeToPixels(ObjSize size)
 		case OBJSIZE_64:
 			return 64;
 	}
+}
+
+void Utils::Print(const std::string& string) {
+	printf(string.c_str());
 }

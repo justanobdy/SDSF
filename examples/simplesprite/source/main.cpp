@@ -2,7 +2,7 @@
 #include <SDSF/Texture.hpp>
 #include <SDSF/ResourceCreator.hpp>
 #include <SDSF/Exception.hpp>
-#include <iostream>
+#include <SDSF/Utils.hpp>
 
 #include <filesystem.h>
 
@@ -82,7 +82,7 @@ int main() {
         // Print the exception if something went wrong
         consoleDemoInit();
 
-        std::cout << e.what() << std::endl;
+        Utils::Print(e.what());
 
         while(1);
     }

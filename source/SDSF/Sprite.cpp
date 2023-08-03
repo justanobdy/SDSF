@@ -4,8 +4,6 @@
 
 #include "SDSF/Utils.hpp"
 
-#include <iostream>
-
 std::array<bool, OAM_SIZE> Sprite::indexesMain = {};
 std::array<bool, OAM_SIZE> Sprite::indexesSub = {};
 

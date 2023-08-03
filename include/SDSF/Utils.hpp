@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 #include <nds.h>
 
 #include "Vector2.hpp"
@@ -64,4 +66,8 @@ namespace Utils
 	/// @param newValue The new value to use
 	/// @param pointer The pointer to the place in VRAM to write to
 	void VRAMWrite8Bit(u8 newValue, u16* pointer);
+
+	/// @brief Print a string using printf
+	/// @param string The string to print
+	void Print(const std::string& string);
 } // namespace Utils

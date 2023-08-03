@@ -4,8 +4,6 @@
 #include "SDSF/Utils.hpp"
 #include "SDSF/FileReader.hpp"
 
-#include <iostream>
-
 BackgroundBase::BackgroundBase(Engine engine, u8 backgroundID)
     :   engine(engine), layer(backgroundID)
 {
