@@ -59,7 +59,7 @@ void Texture::loadTextureFromMemory(const u16* const texture, SpriteSize spriteS
 {
 	unloadTexture();
 
-	oam = &oamMain;
+	OamState* oam = &oamMain;
 	if(engine == Engine::Sub) {
 		oam = &oamSub;
 	}
@@ -92,7 +92,7 @@ Texture::~Texture() {
 
 void Texture::unloadTexture() {
 	if(pointer != nullptr) {
-		oamFreeGfx(oam, pointer);
+		oamFreeGfx(engine == Engine::Main ? &oamMain : &oamSub, pointer);
 		pointer = nullptr;
 	}
 }

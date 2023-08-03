@@ -60,7 +60,6 @@ private:
     u16 gfxSlot;
     u16* pointer = nullptr;
 	u16 size;
-	OamState* oam;
 
     bool loaded = false;
 };
