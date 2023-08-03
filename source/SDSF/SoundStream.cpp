@@ -68,6 +68,7 @@ mm_word SoundStream::streamFunction(SoundStream& stream, mm_word length, mm_addr
             stream.reader.Seek(0);
         }else {
             stream.Stop();
+            return 0;
         }
     }
 
