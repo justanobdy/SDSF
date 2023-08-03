@@ -17,6 +17,8 @@ public:
     /// @brief Destructor
     ~SoundStream();
 
+    static u8 GetBytesPerSample(mm_stream_formats format);
+
     /// @brief Start the SoundStream
     /// @param filename The filename to play 
     void Play(const std::string& filename);
