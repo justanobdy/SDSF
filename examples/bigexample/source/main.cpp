@@ -131,7 +131,7 @@ int run() {
         // Please avoid using floating point math in your programs (use fpm instead), we just use floating points here so that we can display the fps
         lastMilliseconds = milliseconds;
         milliseconds = ((TIMER1_DATA*(1<<16))+TIMER0_DATA) / 32.7285;
-        Utils::Print("FPS: " + std::to_string(1000 / (milliseconds - lastMilliseconds)));
+        Utils::Print("FPS: " + std::to_string(1000 / (milliseconds - lastMilliseconds)) + "\n");
 
         // Update the background
         bgUpdate();
