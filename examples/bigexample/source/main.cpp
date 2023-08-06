@@ -35,7 +35,8 @@ int run() {
     smile.loadTexture("nitro:/smile.img.bin", SpriteSize_32x32, SpriteColorFormat_16Color);
 
     // Load the palette for the smile texture
-    ResourceCreator::LoadPalette("nitro:/smile.pal.bin", -1, SPRITE_PALETTE);
+    Palette smilePalette(SPRITE_PALETTE, Palette::PALETTE_SIZE_16);
+    smilePalette.Load("nitro:/smile.pal.bin", 0);
 
     struct Smile {
         Sprite spr;
@@ -56,7 +57,7 @@ int run() {
         Sprite& spr = smiles.back().spr;
         spr.Create(SpriteSize_32x32, SpriteColorFormat_16Color);
         spr.SetTexture(smile);
-        spr.SetPalette(0);
+        spr.SetPalette(smilePalette);
         spr.SetPosition({96, 64});
     }
 
@@ -82,7 +83,8 @@ int run() {
     background.SetWrapEnabled(true);
 
     // Load the palette for the background
-    ResourceCreator::LoadPalette("nitro:/simpletilemap.pal.bin", -1, BG_PALETTE);
+    Palette mainBackgroundPalette(BG_PALETTE, Palette::PALETTE_SIZE_256);
+    mainBackgroundPalette.Load("nitro:/simpletilemap.pal.bin", 0);
 
     // Initialize maxmod
     mm_ds_system system;

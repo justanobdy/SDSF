@@ -4,6 +4,8 @@
 #include <SDSF/Exception.hpp>
 #include <SDSF/Utils.hpp>
 
+#include <SDSF/Palette.hpp>
+
 #include <filesystem.h>
 
 int run() {
@@ -22,6 +24,13 @@ int run() {
     Sprite::InitOAM(Engine::Main, SpriteMapping_1D_32, false);
     Sprite::InitOAM(Engine::Sub, SpriteMapping_1D_32, false);
 
+    // Load the palette into first index of the sprite palette for each engine
+    Palette mainPalette(SPRITE_PALETTE, Palette::PALETTE_SIZE_16);
+    mainPalette.Load("nitro:/smile.pal.bin", 0);
+
+    Palette subPalette(SPRITE_PALETTE_SUB, Palette::PALETTE_SIZE_16);
+    subPalette.Load("nitro:/smile.pal.bin", 0);
+
     // Load the texture into VRAM
     Texture texture(Engine::Main);
     texture.loadTexture("nitro:/smile.img.bin", SpriteSize_32x32, SpriteColorFormat_16Color);
@@ -34,17 +43,13 @@ int run() {
     Sprite sprite(Engine::Main);
     sprite.Create(SpriteSize_32x32, SpriteColorFormat_16Color);
     sprite.SetTexture(texture);
-    sprite.SetPalette(0);
+    sprite.SetPalette(mainPalette);
 
     // Create the sub sprite
     Sprite subSprite(Engine::Sub);
     subSprite.Create(SpriteSize_32x32, SpriteColorFormat_16Color);
     subSprite.SetTexture(subTexture);
-    subSprite.SetPalette(0);
-
-    // Load the sprite to the first index of the sprite palette
-    ResourceCreator::LoadPalette("nitro:/smile.pal.bin", -1, &SPRITE_PALETTE[0]);
-    ResourceCreator::LoadPalette("nitro:/smile.pal.bin", -1, &SPRITE_PALETTE_SUB[0]);
+    subSprite.SetPalette(subPalette);
 
     while(true) {
         // Scan the keys

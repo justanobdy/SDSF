@@ -110,6 +110,11 @@ void Sprite::SetPalette(u16 palIndex)
     entry->palette = palIndex;
 }
 
+void Sprite::SetPalette(const Palette& palette)
+{
+    entry->palette = palette.GetIndex();
+}
+
 void Sprite::SetPosition(Vector2<u16> position)
 {
     entry->x = position.x;

@@ -13,5 +13,4 @@ using TileResource = std::vector<int>;
 namespace ResourceCreator
 {
     void LoadTilemap(const std::string& filename, u32 tilesToLoad, u16* gfxPointer);
-    void LoadPalette(const std::string& filename, u32 colorsToLoad, u16* palPointer);
 }

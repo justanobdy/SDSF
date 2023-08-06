@@ -14,6 +14,8 @@
 
 #include "fpm/fpm.hpp"
 
+#include <SDSF/Palette.hpp>
+
 /// TODO: Add shearing support, and inline some functions
 
 constexpr u8 OAM_SIZE = 128;
@@ -56,7 +58,10 @@ public:
 	/// @param texture The texture to use
 	void SetTexture(const Texture& texture);
 
-    /// @brief Set a palette for this sprite
+    /// @brief Set the palette for this sprite
+    /// @param palette The palette to use
+    void SetPalette(const Palette& palette);    
+    /// @brief Set the palette for this sprite
     /// @param palIndex The palette index to use
     void SetPalette(u16 palIndex);
 
