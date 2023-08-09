@@ -186,3 +186,11 @@ void BackgroundBase::LoadMap(const u16* const data, u16 bytesToLoad) {
 	DC_FlushRange(data, bytesToLoad);
 	dmaCopyHalfWords(3, data, mapPtr, bytesToLoad);
 }
+
+Vector2<int> BackgroundBase::ConvertGlobalToLocal(Vector2<int> position) const {
+    return {position.x + scroll.x, position.y + scroll.y};
+}
+
+Vector2<int> BackgroundBase::ConvertLocalToGlobal(Vector2<int> position) const {
+    return {position.x - scroll.x, position.y - scroll.y};
+}

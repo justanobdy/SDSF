@@ -109,6 +109,15 @@ public:
 	/// @return The pointer to the graphics
 	u16* GetGfxPtr();
 
+    /// @brief Convert a global position to a local position (eg: add scroll)
+    /// @param position The global position
+    /// @return The local position
+    Vector2<int> ConvertGlobalToLocal(Vector2<int> position) const;
+    /// @brief Convert a local position to a global position (eg: remove scroll)
+    /// @param position The local position
+    /// @return The global position
+    Vector2<int> ConvertLocalToGlobal(Vector2<int> position) const;
+
     BackgroundBase(BackgroundBase&) = delete;
     BackgroundBase(BackgroundBase&&) = delete;
 protected:
@@ -204,6 +213,49 @@ public:
             }
         }
     }
+
+    /// @brief Get a tile at a certain position
+    /// @param x The x position of the tile (in tiles)
+    /// @param y The y position of the tile (in tiles)
+    /// @return The tile info
+    convertedType GetTile(u16 x, u16 y) const {
+        return BackgroundBase::GetTile(x, y);
+    }
+
+    /// @brief Get a tile at a certain position
+    /// @param x The x position of the tile (in tiles)
+    /// @param y The y position of the tile (in tiles)
+    /// @return The tile entry info
+    tileType GetTileEntry(u16 x, u16 y) const {
+        union Convert {
+            convertedType c;
+            tileType t;
+        };
+
+        Convert converter;
+        
+        converter.c = BackgroundBase::GetTile(x, y);
+
+        return converter.t;
+    }
+
+    /// @brief Get a tile at a certain position
+    /// @param x The x position of the tile (in pixels, will be rounded down to the nearest 8)
+    /// @param y The y position of the tile (in pixels, will be rounded down to the nearest 8)
+    /// @return The tile info
+    convertedType GetTilePixels(u16 x, u16 y) const {
+        return NonRotatableBackground<type, tileType, convertedType>::GetTile(x >> 3, y >> 3);
+    }
+
+    /// @brief Get a tile at a certain position
+    /// @param x The x position of the tile (in pixels, will be rounded down to the nearest 8)
+    /// @param y The y position of the tile (in pixels, will be rounded down to the nearest 8)
+    /// @return The tile entry info
+    tileType GetTileEntryPixels(u16 x, u16 y) const {
+        return NonRotatableBackground<type, tileType, convertedType>::GetTileEntry(x >> 3, y >> 3);
+    }
+protected:
+    using BackgroundBase::GetTile;
 };
 
 /// @brief Type for Rotatable backgrounds
