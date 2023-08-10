@@ -188,9 +188,9 @@ void BackgroundBase::LoadMap(const u16* const data, u16 bytesToLoad) {
 }
 
 Vector2<int> BackgroundBase::ConvertGlobalToLocal(Vector2<int> position) const {
-    return {position.x + scroll.x, position.y + scroll.y};
+    return {position.x + (scroll.x % size.x), position.y + (scroll.y % size.y)};
 }
 
 Vector2<int> BackgroundBase::ConvertLocalToGlobal(Vector2<int> position) const {
-    return {position.x - scroll.x, position.y - scroll.y};
+    return {position.x - (scroll.x % size.x), position.y - (scroll.y % size.y)};
 }
