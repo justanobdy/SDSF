@@ -49,6 +49,15 @@ public:
 
     /// @brief Update the sprite (call this every frame)
     void Update();
+
+    /// @brief Stop the sprite animation
+    void Stop();
+    /// @brief Play the sprite animation
+    void Play();
+
+    /// @brief Set the current frame
+    /// @param frame The current frame
+    void SetFrame(u16 frame);
 private:
     using Sprite::SetTexture;
 
@@ -67,4 +76,6 @@ private:
     u16 fpf;
     u16 frames;
     u16 currentTexture = 0;
+
+    bool playing = true;
 };

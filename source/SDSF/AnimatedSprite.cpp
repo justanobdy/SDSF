@@ -81,6 +81,8 @@ void AnimatedSprite::LoadImage(const u16* const data, u32 length, u16 frames, Sp
 }
 
 void AnimatedSprite::Update() {
+    if(!playing) return;
+
     if(frames >= fpf) {
         frames = 0;
 
@@ -106,4 +108,16 @@ void AnimatedSprite::Update() {
 void AnimatedSprite::SetFrames(u16 frameCount)
 {
     this->frameCount = frameCount;
+}
+
+void AnimatedSprite::Play() {
+    playing = true;
+}
+
+void AnimatedSprite::Stop() {
+    playing = false;
+}
+
+void AnimatedSprite::SetFrame(u16 frame) {
+    currentTexture = (frame % frameCount);
 }
