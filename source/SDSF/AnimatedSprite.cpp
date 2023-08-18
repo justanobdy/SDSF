@@ -61,8 +61,6 @@ void AnimatedSprite::LoadImage(const u16* const data, u32 length, u16 frames, Sp
 
         SetTexture(texture);
     }else {
-        nocashMessage(std::to_string(frames).c_str());
-
         // putting this in its own loops seems to make it work for some reason
         for(u32 i = 0; i < frames; i++) {
             textures.push_back(Texture(engine));
@@ -90,16 +88,11 @@ void AnimatedSprite::Update() {
 
         if(currentTexture >= frameCount) {
             currentTexture = 0;
+        }if(endPosition >= 0 && currentTexture > endPosition) {
+            currentTexture = startPosition >= 0 ? startPosition : 0;
         }
 
-        if(type == AnimatedSpriteType::Ram) {
-            Texture& texture = textures.back();
-            texture.loadTextureFromMemory(&spriteData[currentTexture][0], size, colorFormat);
-
-            SetTexture(texture);
-        }if(type == AnimatedSpriteType::Vram) {
-            SetTexture(textures[currentTexture]);
-        }
+        updateFrame();
     }
     
     frames++;
@@ -120,4 +113,22 @@ void AnimatedSprite::Stop() {
 
 void AnimatedSprite::SetFrame(u16 frame) {
     currentTexture = (frame % frameCount);
+    updateFrame();
+}
+
+void AnimatedSprite::updateFrame()
+{
+    if(type == AnimatedSpriteType::Ram) {
+        Texture& texture = textures.back();
+        texture.loadTextureFromMemory(&spriteData[currentTexture][0], size, colorFormat);
+
+        SetTexture(texture);
+    }if(type == AnimatedSpriteType::Vram) {
+        SetTexture(textures[currentTexture]);
+    }
+}
+
+void AnimatedSprite::SetLoopPositions(int start, int end) {
+    startPosition = start;
+    endPosition = end;
 }

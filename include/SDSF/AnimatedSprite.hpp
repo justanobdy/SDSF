@@ -55,10 +55,18 @@ public:
     /// @brief Play the sprite animation
     void Play();
 
+    /// @brief Set the loop indexes (inclusive)
+    /// @param start The starting loop index (Set to -1 to ignore)
+    /// @param end The ending loop index (Set to -1 to ignore)
+    void SetLoopPositions(int start, int end);
+
     /// @brief Set the current frame
     /// @param frame The current frame
     void SetFrame(u16 frame);
 private:
+    /// @brief Update the texture and sprite
+    void updateFrame();
+
     using Sprite::SetTexture;
 
     const AnimatedSpriteType type;
@@ -76,6 +84,8 @@ private:
     u16 fpf;
     u16 frames;
     u16 currentTexture = 0;
+
+    int startPosition = -1, endPosition = -1;
 
     bool playing = true;
 };
